@@ -13,3 +13,4 @@ const cloudinaryConnect = ()=>{
         console.log(error);
     }
 }
+module.exports = cloudinaryConnect;

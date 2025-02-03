@@ -29,13 +29,13 @@ const getUserPosts = async (req, res) => {
 
         const userPosts = await Post.find({ post: userId }); 
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             data: userPosts,
             message: "All User Posts fetched successfully",
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: "Error fetching User Posts",
         });

@@ -22,13 +22,13 @@ const deletePost = async (req, res) => {
 
         await Post.deleteOne({ post: userId });
 
-        res.status(200).json({
+       return res.status(200).json({
             success: true,
             message: "Your post deleted successfully",
         });
     } catch (error) {
         console.error("Error deleting post:", error);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: "Error deleting your post",
         });

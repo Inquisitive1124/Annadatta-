@@ -76,7 +76,7 @@ exports.imageUpload = async (req, res) => {
             image:response.secure_url,
         });
 
-        res.json({
+       return res.json({
             success:true,
             imageUrl:response.secure_url,
             message:'Image Successfully Uploaded',
@@ -84,7 +84,7 @@ exports.imageUpload = async (req, res) => {
     }
     catch(error) {
         console.error(error);
-        res.status(400).json({
+        return res.status(400).json({
             success:false,
             message:'Something went wrong',
         });

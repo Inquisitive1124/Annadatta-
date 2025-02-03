@@ -34,13 +34,13 @@ const signup = async (req, res) => {
             password: hashPassword,
         });
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "User registered successfully"
         });
 
     } catch (error) {
-        res.status(500).json({
+       return res.status(500).json({
             success: false,
             message: "Internal Server Error"
         });
@@ -86,7 +86,7 @@ const login = async (req, res) => {
                 httpOnly: true,
             };
 
-            res.cookie("token", token, options).status(200).json({
+           return  res.cookie("token", token, options).status(200).json({
                 success: true,
                 token,
                 user,

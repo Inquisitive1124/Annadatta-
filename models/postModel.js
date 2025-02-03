@@ -4,7 +4,7 @@ const postSchema = new mongoose.Schema({
 
     post:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
+        ref:"User",
     },
     image:{
         type:String,

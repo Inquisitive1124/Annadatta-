@@ -48,8 +48,8 @@ async function uploadFileToCloudinary(file, folder, quality) {
 exports.imageUpload = async (req, res) => {
     try{
         
-        const { description, address} = req.body;
-        console.log(description, address);
+        const {post, description, address} = req.body;
+        console.log(post,description, address);
 
         const file = req.files.imageFile;
         console.log(file);
@@ -69,8 +69,8 @@ exports.imageUpload = async (req, res) => {
         const response = await uploadFileToCloudinary(file, "Food_application");
         console.log(response);
 
-        //db me entry save krni h
         const fileData = await File.create({
+            post,
             description,
             address,
             image:response.secure_url,

@@ -36,35 +36,31 @@
 //     }
    
 // }
+
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
+
 exports.auth = (req, res, next) => {
     try {
-        // Extract JWT token from Authorization header
-        const token = req.headers.authorization && req.headers.authorization.split(" ")[1];
-
-        if (!token) {
+        const authHeader = req.header("Authorization");
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
             return res.status(401).json({
                 success: false,
-                message: 'Token Missing',
+                message: "Token missing or invalid format",
             });
         }
 
-        // Verify the token
-        try {
-            const payload = jwt.verify(token, process.env.JWT_SECRET);
-            console.log(payload);
-            req.user = payload; // Attach the payload to req.user
-        } catch (error) {
-            return res.status(401).json({
-                success: false,
-                message: 'Token is invalid',
-            });
-        }
-        next(); // Move to the next middleware/handler
+        const token = authHeader.split(" ")[1]; 
+        const payload = jwt.verify(token, process.env.JWT_SECRET); 
+
+        console.log("Decoded Payload:", payload); 
+        req.user = payload; 
+        next();
     } catch (error) {
         return res.status(401).json({
             success: false,
-            message: 'Something went wrong while verifying the token',
+            message: "Invalid or expired token",
         });
     }
 };
+

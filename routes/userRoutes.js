@@ -7,6 +7,7 @@ const{getUserPosts} = require("../controllers/getUserPosts.js")
 const{getAllPosts} = require("../controllers/getAllPosts.js");
 const{localFileUpload} = require("../controllers/fileUpload.js");
 const{imageUpload} = require("../controllers/fileUpload.js");
+const{deletePost} = require("../controllers/deletePostController.js");
 
 router.post("/signup",signup);
 router.post("/login",login);
@@ -14,5 +15,6 @@ router.get("/getUserPosts",auth,getUserPosts);
 router.get("/getAllPosts",getAllPosts);
 // router.post("/localFileUpload",localFileUpload );
 router.post("/imageUpload",imageUpload );
+router.delete("/deletePost",auth,deletePost);
 
 module.exports = router;

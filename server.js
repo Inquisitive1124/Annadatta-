@@ -32,6 +32,9 @@ cloudinaryConnect();
 app.listen(PORT,()=>{
     console.log(`Application running on the post : ${PORT}`);
 })
+app.get("/",()=>{
+    console.log("You are Viewing backend of our project");
+})
 
 
 

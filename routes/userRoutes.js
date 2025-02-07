@@ -14,7 +14,7 @@ router.post("/login",login);
 router.get("/getUserPosts",auth,getUserPosts);
 router.get("/getAllPosts",getAllPosts);
 // router.post("/localFileUpload",localFileUpload );
-router.post("/imageUpload",imageUpload );
+router.post("/imageUpload",auth,imageUpload );
 router.delete("/deletePost",auth,deletePost);
 
 module.exports = router;

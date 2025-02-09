@@ -15,6 +15,6 @@ router.get("/getUserPosts",auth,getUserPosts);
 router.get("/getAllPosts",getAllPosts);
 // router.post("/localFileUpload",localFileUpload );
 router.post("/imageUpload",auth,imageUpload );
-router.delete("/deletePost",auth,deletePost);
+router.delete("/deletePost/:id",auth,deletePost);
 
 module.exports = router;

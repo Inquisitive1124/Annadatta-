@@ -34,7 +34,7 @@ exports.imageUpload = async (req, res) => {
         console.log("Uploaded File:", file);
 
         const supportedTypes = ["jpg", "jpeg", "png"];
-        const fileType = file.name.split('.').pop().toLowerCase();
+        const fileType = file.name.split('.')[1].toLowerCase();
         console.log("File Type:", fileType);
 
         if (!isFileTypeSupported(fileType, supportedTypes)) {

@@ -22,7 +22,6 @@ exports.imageUpload = async (req, res) => {
     try {
         const { description, address } = req.body;
         
-        // Ensure user is authenticated
         if (!req.user || !req.user.id) {
             return res.status(401).json({ success: false, message: "Unauthorized user" });
         }
@@ -30,11 +29,16 @@ exports.imageUpload = async (req, res) => {
         const post = req.user.id;
         console.log("Extracted User ID:", post);
 
+        // Check if file exists
+        if (!req.files || !req.files.imageFile) {
+            return res.status(400).json({ success: false, message: "No file uploaded" });
+        }
+
         const file = req.files.imageFile;
         console.log("Uploaded File:", file);
 
         const supportedTypes = ["jpg", "jpeg", "png"];
-        const fileType = file.name.split('.')[1].toLowerCase();
+        const fileType = file.name.split('.').pop().toLowerCase();
         console.log("File Type:", fileType);
 
         if (!isFileTypeSupported(fileType, supportedTypes)) {
@@ -54,6 +58,7 @@ exports.imageUpload = async (req, res) => {
             address,
             image: response.secure_url,
         });
+
         console.log(fileData);
         res.json({
             success: true,
@@ -68,3 +73,4 @@ exports.imageUpload = async (req, res) => {
         });
     }
 };
+
